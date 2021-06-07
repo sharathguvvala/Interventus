@@ -1,3 +1,3 @@
 module.exports.home = function(req, res){
-    res.end('Interventus')
+    res.render('home.ejs', {title: "Home"})
 }
