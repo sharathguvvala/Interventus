@@ -3,5 +3,15 @@
             Interventus / Profile Page
         </h1>
 
-        <p><%= user.name %></p>
-        <p><%= user.email %></p>
+        
+
+        <% if(user.id == profileUser.id){ %> 
+            <form action="/users/update/<%= profileUser.id %>" method="POST">
+                <input type="text" name="name" placeholder="Enter your name" value="<%= profileUser.name %>" required>
+                <input type="email" name="email" placeholder="Enter your email" value="<%= profileUser.email %>" required>
+                <input type="submit" value="Update">
+            </form>
+        <% } else{ %>
+            <p><%= profileUser.name %></p>
+            <p><%= profileUser.email %></p>
+        <% } %>

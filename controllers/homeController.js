@@ -1,5 +1,5 @@
 const Post = require('../models/post')
-const { post } = require('../routes')
+const User = require('../models/user')
 
 module.exports.home = function(req, res){
     /* Post.find({},function(err,posts){
@@ -18,9 +18,12 @@ module.exports.home = function(req, res){
         }
     })
     .exec(function(err,posts){
-        return res.render('home.ejs', {
-            title: "Interventus | Home",
-            posts:posts
+        User.find({},function(err,users){
+            return res.render('home.ejs', {
+                title: "Interventus | Home",
+                posts:posts,
+                users:users
+            })
         })
     })
 }
