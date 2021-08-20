@@ -3,11 +3,9 @@ const app = express()
 const port = process.env.port || 8000
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose')
-const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const passport = require('passport')
 const passportLocal = require('./config/passport-local')
-/* const MongoStore = require('connect-mongo') */
 const sassMiddleware = require('node-sass-middleware')
 
 app.use(sassMiddleware({
@@ -19,8 +17,6 @@ app.use(sassMiddleware({
 }))
 
 app.use(express.urlencoded());
-
-app.use(cookieParser());
 
 app.use(express.static('./assets'));
 
@@ -38,12 +34,8 @@ app.use(session({
     saveUninitialized:false,
     resave:false,
     cookie:{
-        maxAge:(6*100*100) //in milliseconds
-    }/* ,
-    store:MongoStore.create({
-        mongoUrl:db,
-        autoRemove:'disabled'
-    }) */
+        maxAge:(60*100*100) 
+    }
 }))
 app.use(passport.initialize())
 app.use(passport.session())
